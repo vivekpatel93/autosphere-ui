@@ -8,30 +8,36 @@ import Feedback from "./component/Feedback";
 import Contact from "./component/Contact";
 import Login from "./component/Login";
 import Register from "./component/Register";
-import CarSlider from "./slider/CarSlider";
-import Footer from "./component/Footer";
+
 
 function App() {
   return(
     <BrowserRouter>
-      <NavBar />
-
       <Routes>
-        {/* Normal User Routes */}
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>}/>
-        <Route path="/services" element={<Services/>}/>
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
 
-        {/* Admin Route */}
-      
+        {/* USER ROUTES */}
+        <Route element={<UserLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+
+        {/* ADMIN ROUTES */}
+        <Route
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        >
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Route>
+
       </Routes>
-
-      <CarSlider />
-      <Footer />
     </BrowserRouter>
   )
 }
